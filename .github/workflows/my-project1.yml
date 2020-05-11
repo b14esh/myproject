@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print hellow message
+    - name: Print hellow message in testing
       run : echo "Hello world from testing"
   
   my_deploy:
     runs-on: ubuntu-latest
-     
+    needs: [my_testing] 
     steps: 
-    - name: Print hellow message
+    - name: Print hellow message deploy
       run : echo "Hello world from deploy"
