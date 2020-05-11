@@ -1,4 +1,8 @@
 name: My-Project1
+env:
+  APPLICATION_NAME     : "MyFlask"
+  DEPLOY_PACKAGE_NAME  : "flask-deploy-ver-${{ github.ssh }}"
+   
 on: 
   push: 
     branches: 
@@ -11,10 +15,19 @@ jobs:
     steps:
     - name: Print hellow message in testing
       run : echo "Hello world from testing"
-  
-  my_deploy:
+    
+    - name: Execute few commands
+      run: |
+        echo "Hello Message1" 
+        echo "Hello Message2"
+        echo "Aplication name: ${{ env.APPLICATION_NAME }}"
+        
+ my_deploy:
     runs-on: ubuntu-latest
     needs: [my_testing] 
     steps: 
     - name: Print hellow message deploy
       run : echo "Hello world from deploy"
+    
+    - name: Deploymend package
+      run : echo "Deploy package name is ${{ env.DEPLOY_PACKAGE_NAME }}"
